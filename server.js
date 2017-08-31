@@ -14,7 +14,7 @@ var app = express();
 module.export = app;
 var router = express.Router();
 
-var port = process.env.Port || 8080;
+var port = process.env.PORT || 8080;
 app.use(express.static(__dirname+"/public"));
 app.use(favicon(path.join(__dirname, 'public', 'latest.jpg')));
 
