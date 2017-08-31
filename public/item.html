@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+::selection {
+    color: #fff;
+    background: #f676b2; /* Safari */
+}
+
+::-moz-selection {
+    color: #fff;
+    background: #f676b2; /* Firefox */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+body {
+    background: url('http://www.demo.amitjakhu.com/login-form/images/bg.png');
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    text-align: center;
+    text-decoration: none;
+    height: 500px;
+}
+
+#container {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#container article {
+    background: #f3f3f3;
+    border-radius: 5px;
+    display: inline-block;
+    min-width: 243px;
+    vertical-align: top;
+    padding: 5px;
+}
+
+#three {
+    background: #f3f3f3;
+    border-radius: 5px;
+    display: inline-block;
+    width: 310px;
+    vertical-align: top;
+    margin-left: 80px;
+}
+
+#header {
+    background: #e8e8e8;
+    border-radius: 5px;
+    padding: 5px;
+}
+</style>
+
+<style>
+    .button {
+        float: none;
+        padding: 3px 5px;
+
+        font-family: 'Bree Serif', serif;
+        font-size: 18px;
+        color: #fff;
+        text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
+
+        background: rgba(135, 205, 255, 0.54);
+        border: 1px solid rgba(135, 205, 255, 0.54);
+        border-radius: 8px;
+        cursor: pointer;
+
+        box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        -moz-box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        -webkit-box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        text-decoration: none;
+    }
+
+    .color {
+        float: none;
+        padding: 3px 5px;
+
+        background: rgba(135, 205, 255, 0.54);
+        border: 1px solid rgba(135, 205, 255, 0.54);
+        border-radius: 8px;
+        cursor: pointer;
+
+        box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        -moz-box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        -webkit-box-shadow: inset 0 0 2px rgba(256, 256, 256, 0.75);
+        text-decoration: none;
+    }
+
+    .input {
+        width: 178px;
+        padding: 15px 25px;
+
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: #9d9e9e;
+        text-shadow: 1px 1px 0 rgba(256, 256, 256, 1.0);
+
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 5px;
+
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.50);
+        -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.50);
+        -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.50);
+    }
+
+    .table {
+
+        width: 50%;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        width: 1%;
+        text-align: left;
+    }
+
+    table th {
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+
+    table th {
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+
+</style>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>TO DO LISTS</title>
+    <!-- <link rel="stylesheet" href="css/ItemStyle.css"> -->
+</head>
+<meta name="viewport" content="width=device-width">
+<body>
+
+<h1 id="head1" style="color: #595959;display:inline-block;"></h1><br>
+<a href="/shared">shared lists</a><br><br>
+<h2 style="color: #595959;display:inline-block;">EDIT THE LISTS</h2><br>
+
+<div style="font-weight: bold">If you want to delete a list, please enter it's name.<br></div>
+<input class=input type="deleteListName" id="deleteListName" placeholder="List name" required/><br>
+<button class=button id="dltLstBtn" type='button'>DELETE!</button>
+<br>
+
+<div style="font-weight: bold">If you want to add a list, please enter name and choose color.<br></div>
+<input class=input type="addListName" id="addListName" placeholder="List name" required/><br>
+<input class=color type="color" id="addListcolor" value=#595959></input>
+<button class=button id="addLstBtn" type='button'>ADD!</button>
+<br>
+
+<div style="font-weight: bold">If you want to share a list, please enter list name and other user-name.<br></div>
+<input class=input type="shareListName" id="shareListName" placeholder="List name" required/>
+<input class=input type="shareListUserName" id="shareListUserName" placeholder="User name" required/><br>
+<button class=button id="shareLstBtn" type='button'>SHARE!</button>
+<br>
+
+<h2 style="color: #595959;display:inline-block;">EDIT ITEMS</h2><br>
+<div style="font-weight: bold">please enter list name and job<br></div>
+<input class=input type="srchListName" id="srchListName" placeholder="List name" required/>
+<input class=input type="jobName" id="jobName" placeholder="TODO" required/>
+<div style="font-weight: bold">what would you like to do?<br></div>
+<button class=button id="addItemBtn" type='button'>ADD!</button>
+<button class=button id="deleteItemBtn" type='button'>DELETE!</button>
+<button class=button id="serchItemBtn" type='button'>SEARCH!</button>
+<br>
+<br>
+<div id="searchResultDiv">
+    <table id="searchResultTable"></table>
+</div>
+<div id="listsDiv">
+    <table id='nextList'></table>
+</div>
+
+<br>
+<button class=button id="dltUserBtn" type='button'>Delete User</button>
+<button class=button id="logOutBtn" type='button'>Log Out</button>
+
+</body>
+<script>
+
+    function getAllLists() {
+        $.get("/userlists/", function (data) {
+            if (data === '500') {
+                window.location.href = "/login";
+            } else if (data === '404') {
+                alert('something went wrong with getting all the lists');
+            } else {
+                console.log(data.userName);
+                var head1 = document.getElementById('head1');
+                head1.innerHTML = (data.userName) ? data.userName + "'S TODO APP" :
+                    "WHAT DO I HAVE TO DO";
+                for (var i = 0; i < data.lists.length; i++) {
+                    if (data.lists[i]) {
+                        var name = data.lists[i].name;
+                        var color = data.lists[i].color;
+                        var jobs = data.lists[i].jobs;
+                        if ((name) && (color) && (jobs)) {
+                            printTable(jobs, color, name);
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    $(document).ready(getAllLists);
+
+    var deafultColor = "#595959";
+    //////ADD JOB TO LIST////////////
+    $("#addItemBtn").click(function () {
+        var obj = new Object();
+        obj.listName = $("#srchListName").val();
+        obj.job = $("#jobName").val();
+        if ((obj.listName) && (obj.job)) {
+            var urlString = JSON.stringify(obj);
+            console.log("job to add is " + urlString);
+            $.post("/addJob/", urlString, function (data) {
+                if (data === '500') {
+                    window.location.href = "/login";
+                    alert("something went wrong");
+                } else if (data === '404') {
+                    location.reload();
+                    alert("such list does not exist");
+                } else if (data === '200') {
+                    location.reload();
+                    alert("job added successfully");
+                } else {
+                    location.reload();
+                    alert("this job already exists");
+                }
+            })
+        } else {
+            alert("please enter valid inputs");
+        }
+    });
+
+    $("#dltLstBtn").click(function () {
+        var listName = $("#deleteListName").val();
+        console.log("start list deletion");
+        if (listName) {
+            deleteList(listName);
+            location.reload();
+        } else {
+            alert("Please insert valid name!")
+        }
+    });
+
+    function deleteList(listName) {
+        $.ajax({
+            url: "/item/deleteList/" + listName,
+            type: "DELETE",
+            success: function () {
+                alert("Deletion completed")
+            },
+            error: function (data) {
+                if (data === '500') {
+                    window.location.href = "/login";
+                } else {
+                    alert("missing list")
+                }
+            }
+        })
+    }
+    ////////////////////////ADD LIST/////////////////////////
+    $("#addLstBtn").click(function () {
+        var obj = {};
+        obj.listName = $("#addListName").val();
+        obj.color = ($("#addListcolor").val()) ? $("#addListcolor").val() : deafultColor;
+        var urlString = JSON.stringify(obj);
+        console.log(urlString);
+        if (obj.listName) {
+            $.post("/item/", urlString, function (data) {
+                console.log(data);
+                if (data === "500") {
+                    window.location.href = "/login";
+                    alert("something went wrong");
+                } else if (data === '404') {
+                    alert('list with this name already exists');
+                } else {
+                    alert('new list added successfully');
+                }
+            });
+        } else {
+            alert('please insert valid name');
+        }
+        location.reload();
+    });
+    ///////////////LOG OUT AND DELETE USER////////////////
+    $("#logOutBtn").click(logOut);
+
+    $("#dltUserBtn").click(deleteUser);
+
+    function deleteUser() {
+        $.ajax({
+            url: "/item/deleteUser",
+            type: "DELETE",
+            success: function () {
+                alert("Deletion completed");
+                window.location.href = "/register";
+            },
+            error: function (data) {
+                if (data === '500') {
+                    window.location.href = "/login";
+                } else {
+                    alert("something went wrong1 :(")
+                }
+            }
+        })
+    }
+
+    function logOut() {
+        $.get("/logout/", function (data) {
+            if (data === '500') {
+                window.location.href = "/login";
+            } else if (data === '404') {
+                alert('something went wrong');
+            } else {
+                alert('loged out');
+                window.location.href = "/register";
+            }
+        })
+    }
+    /////////////////SHARE LIST////////////////////////////////////
+    $("#shareLstBtn").click(function () {
+        var obj = {};
+        obj.listName = $("#shareListName").val();
+        obj.otherUserName = $("#shareListUserName").val();
+        var urlString = JSON.stringify(obj);
+        console.log(urlString);
+        if ((obj.otherUserName) && (obj.listName)) {
+            $.post("/item/share/", urlString, function (data) {
+                console.log(data);
+                if (data === "500") {
+                    window.location.href = "/login";
+                } else if (data === '404') {
+                    alert('user or list does not exist or list already has been shared');
+                } else if (data === '503') {
+                    alert('this list name is already taken');
+                } else {
+                    alert("list shared!")
+                }
+            })
+        } else {
+            alert('please insert valid inputs');
+        }
+    });
+
+    /*//////////////DELETE ITEM FROM LIST////////////////*/
+    $("#deleteItemBtn").click(function () {
+        var listName = $("#srchListName").val();
+        var itemName = $("#jobName").val();
+        if ((listName) && (itemName)) {
+            deleteItem(listName, itemName);
+        } else {
+            alert("please enter valid inputs");
+        }
+    });
+
+    function deleteItem(listName, itemName) {
+        var obj = {};
+        obj.listName = listName;
+        obj.itemName = itemName;
+        var urlString = JSON.stringify(obj);
+        $.ajax({
+            url: "/item/deleteItem",
+            type: "DELETE",
+            data: urlString,
+            success: function () {
+                alert("Deletion completed")
+                location.reload();
+            },
+            error: function (data) {
+                if (data === '500') {
+                    window.location.href = "/login";
+                } else {
+                    alert("list name or job name not found")
+                }
+            }
+        })
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function showHide() {
+        var str = this.id + "Table";
+        var name = this.id;
+        var e = document.getElementById(str);
+        if (e.style.display === 'none') {
+            e.style.display = 'block';
+            this.innerHTML = "Hide " + name;
+        } else {
+            e.style.display = 'none';
+            this.innerHTML = "Show " + name;
+        }
+    }
+
+    function printTable(data, color, name) {
+        var html = "<table border='1|1' id =";
+        html += "'" + name + "'";
+        html += " style='background-color:";
+        html += color + "'";
+        html += ">";
+        html += "<tr>";
+        html += "<th>" + name + "</th>";
+        html += "</tr>";
+        console.log("length is: " + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.log(i);
+            if (data[i]) {
+                html += "<tr>";
+                html += "<td>" + data[i] + "</td>";
+                html += "</tr>";
+            }
+        }
+        html += "</table>";
+        console.log(html);
+        var table = document.createElement('table');
+        table.id = name + "Table";
+        table.cellSpacing = "10";
+        table.innerHTML = html;
+        table.setAttribute("bgcolor", color);
+        table.style.display = 'none';
+        //creating button
+        var button = document.createElement('button');
+        button.id = name;
+        button.innerHTML = "Show " + name;
+        button.onclick = showHide;
+        button.setAttribute("class", "button");
+        //creating new div
+        var div = document.createElement('div');
+        var br = document.createElement("br");
+        var brII = document.createElement("br");
+        var brIII = document.createElement("br");
+        div.appendChild(button);
+        div.appendChild(table);
+        div.appendChild(br);
+        div.appendChild(brIII);
+        //div.appendChild(brII);
+        div.id = name + "Div";
+        document.getElementById('listsDiv').appendChild(div);
+    }
+    /**
+     * check if both inputs are not null
+     * @returns {jQuery}
+     */
+    function checkValidity() {
+        var listName = $("#srchListName").val();
+        var jobName = $("#jobName").val();
+        return ((listName) && (jobName));
+    }
+    ////////////////////////////SEARCH//////////////////////////////
+    function searchInTable(listName, prefix) {
+        var result = [];
+        var td;
+        var tableID = listName + "Table";
+        var filter = prefix.toUpperCase();
+        var table = document.getElementById(tableID);
+        if (!table) {
+            alert("list is not available");
+            return;
+        }
+        var tr = table.getElementsByTagName("tr");
+        for (var i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName('td');
+            if (td[0].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                result.push(td[0].innerHTML);
+            }
+        }
+        return result;
+    }
+
+
+    $("#serchItemBtn").click(function () {
+        var listName = $("#srchListName").val();
+        var prefix = $("#jobName").val();
+        if ((listName) && (prefix)) {
+            var resultArray = searchInTable(listName, prefix);
+            var table = document.getElementById('searchResultTable');
+            while (table.firstChild) {
+                table.removeChild(table.firstChild);
+            }
+            var trI = document.createElement('tr');
+            var th = document.createElement('th');
+            th.appendChild(document.createTextNode("Search Results for '" + prefix + "' in '" + listName + "'"));
+            trI.appendChild(th);
+            table.appendChild(trI);
+
+            for (var i = 0; i < resultArray.length; i++) {
+                var tr = document.createElement('tr');
+                var td = document.createElement('td');
+                td.appendChild(document.createTextNode(resultArray[i]));
+                tr.appendChild(td);
+                table.appendChild(tr);
+            }
+
+        }
+    })
+
+</script>
+</html>
