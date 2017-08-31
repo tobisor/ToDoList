@@ -153,7 +153,7 @@ app.get("/logout/", function (req, res) {
     var usr = findUser(req);
     if (usr) {
         res.clearCookie('uid');
-        res.redirect('/');
+        //res.redirect('/');
         if (registerdUser[usr]) {
             res.status(200).send('200');
         } else {
