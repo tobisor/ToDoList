@@ -303,8 +303,9 @@
 
 <script>
     var postCount = 0;
+    $("#loginBtn").unbind('click');
     $("#loginBtn").click(function () {
-        console.log("PUSHED");
+        $("#loginBtn").attr('disabled', 'disabled');
         var password = $("#password").val();
         var username = $("#username").val();
         if (postCount === 0) {

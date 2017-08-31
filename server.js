@@ -112,8 +112,8 @@ app.post("/register/:username/:password", function (req, res) {
         console.log("regArray int " + username + " is " + JSON.stringify(registerdUser[username]))
         res.cookie("uid", registerdUser[username].uid, {maxAge: COOCKIETIME});
         console.log("cookie");
-        res.send('200');
-        //sendFile(__dirname + '/public/item.html');
+        res.status(200).send('200');
+        //res.sendFile(__dirname + '/public/item.html');
     } else {
         res.send('500');
         console.log("hi");
