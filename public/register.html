@@ -302,7 +302,7 @@
     var postCount = 0;
     $("#rgstnBtn").unbind('click');
     $("#rgstnBtn").click(function () {
-        $("#rgstnBtn").attr('disabled', 'disabled');
+        $("#rgstnBtn").attr('disabled', 'disabled');//enable post to sent twice
         var password = $("#password").val();
         var username = $("#username").val();
         if (postCount === 0) {

@@ -163,7 +163,7 @@ app.get("/logout/", function (req, res) {
         res.ssend('500');
     }
 });
-
+////////////get all user's lists////////////
 app.get("/userlists/", function (req, res) {
     var usr = findUser(req);
     if (usr) {
@@ -183,7 +183,7 @@ app.get("/userlists/", function (req, res) {
         res.send('500');
     }
 });
-
+///////get all user's shared lists///////////////
 app.get("/sharedlists/", function (req, res) {
     var usr = findUser(req);
     if (usr) {
@@ -253,7 +253,7 @@ app.post("/item/share/", function (req, res) {
             if (findListInShared(other, lst) !== -1) {
                 res.send('503');
             }
-            if (index != -1 && !registerdUser[usr].lists[index].shared) {  //if list exists and is not shared yet
+            if (index != -1 && !registerdUser[usr].lists[index].shared) {  //if list exists and it is not shared yet
                 registerdUser[usr].lists[index].shared = true;
                 //add list to other's shared
                 registerdUser[other].shared.push(registerdUser[usr].lists[index]);
@@ -296,27 +296,7 @@ app.post("/item/", function (req, res) {
 
     }
 });
-///////////MA PUT?////////////
-/*app.put("/item/", function(req, res,next){
- console.log(req.body)
- var itemJson= JSON.parse(req.body) //parsing item to json
- var usr = findUser(req);
- if (usr) {
- var curUid = req.cookies.uid;
- res.cookie('uid', curUid, {maxAge: COOCKIETIME})
- if (registerdUser[usr].lists[itemJson.name]){        //if item exist
- Object.keys(itemJson).forEach(function (key){
- if(itemJson[key]) {     //if key has value
- registerdUser[usr].lists[itemJson.name][key] = itemJson[key];
- }
- })
- }else {
- res.status(404).send('404');
- }
- }else{
- res.status(500).send('500');
- }
- });*/
+
 ////////////DELETE LIST////////////////
 app.delete("/item/deleteList/:listName", function (req, res) {
     var usr = findUser(req);
@@ -380,29 +360,6 @@ app.delete("/item/deleteItem", function (req, res) {
         res.send('500');
     }
 });
-
-/**
- * function to check validity of cookies
- * @param req
- * @returns {boolean} - if cookie is vaalid or not
- */
-/* function verifyAccess(req) {
-
- var cuid = req.cookies.uid;
-
- var verified = false;
- if (cuid){
- Object.keys(registerdUser).forEach(function(user){
-
- if (cuid == registerdUser[user].uid){
- verified = true;
- }
- });
- }
-
- return verified;
- }  */
-
 
 /**
  * find the list index in user.lists array

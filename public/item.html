@@ -251,18 +251,20 @@ body {
             alert("please enter valid inputs");
         }
     });
-
+    ////////////////////DELETE LIST////////////////////////
     $("#dltLstBtn").click(function () {
         var listName = $("#deleteListName").val();
         console.log("start list deletion");
-        if (listName) {
+        if (listName) { //valid input
             deleteList(listName);
             location.reload();
         } else {
             alert("Please insert valid name!")
         }
     });
-
+    /**
+     * delete list func, sends AJAX req
+     * */
     function deleteList(listName) {
         $.ajax({
             url: "/item/deleteList/" + listName,
@@ -286,7 +288,7 @@ body {
         obj.color = ($("#addListcolor").val()) ? $("#addListcolor").val() : deafultColor;
         var urlString = JSON.stringify(obj);
         console.log(urlString);
-        if (obj.listName) {
+        if (obj.listName) { //valid input
             $.post("/item/", urlString, function (data) {
                 console.log(data);
                 if (data === "500") {
@@ -345,7 +347,7 @@ body {
         obj.otherUserName = $("#shareListUserName").val();
         var urlString = JSON.stringify(obj);
         console.log(urlString);
-        if ((obj.otherUserName) && (obj.listName)) {
+        if ((obj.otherUserName) && (obj.listName)) { //valid input
             $.post("/item/share/", urlString, function (data) {
                 console.log(data);
                 if (data === "500") {
@@ -398,6 +400,9 @@ body {
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * hide and show list, and change the button inner html
+     * */
     function showHide() {
         var str = this.id + "Table";
         var name = this.id;
@@ -410,8 +415,11 @@ body {
             this.innerHTML = "Show " + name;
         }
     }
-
+    /**
+     * prints todo list received from server as a table
+     * */
     function printTable(data, color, name) {
+        //table
         var html = "<table border='1|1' id =";
         html += "'" + name + "'";
         html += " style='background-color:";
@@ -430,7 +438,7 @@ body {
             }
         }
         html += "</table>";
-        console.log(html);
+        //console.log(html);
         var table = document.createElement('table');
         table.id = name + "Table";
         table.cellSpacing = "10";
@@ -466,6 +474,12 @@ body {
         return ((listName) && (jobName));
     }
     ////////////////////////////SEARCH//////////////////////////////
+    /**
+     * serach jobs in table that compatible to the prifix param
+     * @param listName
+     * @param prefix
+     * @returns {Array} of compatible jobs
+     */
     function searchInTable(listName, prefix) {
         var result = [];
         var td;
@@ -486,7 +500,6 @@ body {
         return result;
     }
 
-
     $("#serchItemBtn").click(function () {
         var listName = $("#srchListName").val();
         var prefix = $("#jobName").val();
@@ -501,7 +514,7 @@ body {
             th.appendChild(document.createTextNode("Search Results for '" + prefix + "' in '" + listName + "'"));
             trI.appendChild(th);
             table.appendChild(trI);
-
+            //"build the table"
             for (var i = 0; i < resultArray.length; i++) {
                 var tr = document.createElement('tr');
                 var td = document.createElement('td');
@@ -509,7 +522,6 @@ body {
                 tr.appendChild(td);
                 table.appendChild(tr);
             }
-
         }
     })
 
